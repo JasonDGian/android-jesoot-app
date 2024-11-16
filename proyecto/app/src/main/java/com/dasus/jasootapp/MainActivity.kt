@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        startActivity(Intent(this, FormularioActivity::class.java))
 
+
+       // startActivity(Intent(this, FormularioActivity::class.java))
 
     }
 }
