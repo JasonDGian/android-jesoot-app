@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.dasus.jasootapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dasus.jasootapp"

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JasootAPP</string>
+    <string name="nombre_largo"> Jasoot APP </string>
+    <string name="aviso_formulario">Introduce una pregunta y sus respuestas, señalando la respuesta correcta.</string>
+    <string name="etiqueta_pregunta"> Pregunta </string>
+    <string name="etiqueta_respuestas"> Respuestas </string>
 </resources>
