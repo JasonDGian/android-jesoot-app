@@ -13,3 +13,9 @@ data class Pregunta(
         return (respuesta == this.correcta);
     }
 }
+
+
+
+// 1. añadir dependencias.
+// 2. crear modelo dataclass. -> Debe tener ID @PrimaryKey
+
