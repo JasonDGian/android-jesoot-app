@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JuegoActivity"
+    android:background="@mipmap/ic_fondo_preguntas_foreground">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:padding="16dp"
+        android:hint="titulo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/pregunta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:background="@drawable/sombra"
+        android:padding="16dp"
+        android:hint="@string/etiqueta_pregunta"
+        app:layout_constraintTop_toBottomOf="@+id/titulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_respuesta1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_respuesta_1"
+        app:layout_constraintTop_toBottomOf="@+id/pregunta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btn_respuesta2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_respuesta_2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_respuesta1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btn_respuesta3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_respuesta_3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_respuesta2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btn_respuesta4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_respuesta_4"
+        app:layout_constraintTop_toBottomOf="@+id/btn_respuesta3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btn_confirmar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmar"
+        android:backgroundTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

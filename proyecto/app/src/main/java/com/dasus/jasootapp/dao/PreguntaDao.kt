@@ -17,5 +17,5 @@ interface PreguntaDao {
     suspend fun deletePreguntaById(paramId: Int)
 
     @Query(" SELECT * FROM pregunta ORDER BY id ")
-    fun loadAllPreguntas(): List<Pregunta>
+    suspend fun loadAllPreguntas(): List<Pregunta>
 }

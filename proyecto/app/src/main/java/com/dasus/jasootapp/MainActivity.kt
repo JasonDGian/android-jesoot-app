@@ -9,6 +9,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.room.Room
 import com.dasus.jasootapp.database.JesootDatabase
+import com.dasus.jasootapp.models.Pregunta
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         botonJugar.setOnClickListener {
-            startActivity(Intent( this, ListadoPreguntasActivity::class.java ))
+            startActivity(Intent( this, JuegoActivity::class.java ))
         }
 
     }

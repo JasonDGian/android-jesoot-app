@@ -14,7 +14,9 @@
     <string name="subtitulo_main">- Juega, compite y gana con tu conocimiento. -</string>
     <string name="titulo_main">Bienvenido a Jesoot!</string>
     <string name="title_activity_listado_preguntas">ListadoPreguntasActivity</string>
+    <string name="confirmar">CONFIRMAR</string>
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
