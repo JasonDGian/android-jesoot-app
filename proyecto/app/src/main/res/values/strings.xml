@@ -4,4 +4,13 @@
     <string name="aviso_formulario">Introduce una pregunta y sus respuestas, señalando la respuesta correcta.</string>
     <string name="etiqueta_pregunta"> Pregunta </string>
     <string name="etiqueta_respuestas"> Respuestas </string>
+    <string name="atras">Atrás</string>
+    <string name="boton_guardar">GUARDAR</string>
+    <string name="hint_respuesta_4">Respuesta 4</string>
+    <string name="hint_respuesta_3">Respuesta 3</string>
+    <string name="hint_respuesta_2">Respuesta 2</string>
+    <string name="hint_respuesta_1">Respuesta 1</string>
+    <string name="hint_introduce_la_pregunta">Introduce la pregunta.</string>
+    <string name="subtitulo_main">- Juega, compite y gana con tu conocimiento. -</string>
+    <string name="titulo_main">Bienvenido a Jesoot!</string>
 </resources>

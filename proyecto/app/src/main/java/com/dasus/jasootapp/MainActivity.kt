@@ -2,6 +2,7 @@ package com.dasus.jasootapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,9 +19,14 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val botonPreguntas = findViewById<Button>(R.id.button)
+        val botonJugar = findViewById<Button>(R.id.button2)
+        // Intent pantalla formulario
+        val pantallaFormulario = Intent( this, FormularioActivity::class.java )
 
-
-       // startActivity(Intent(this, FormularioActivity::class.java))
+        botonPreguntas.setOnClickListener {
+            startActivity(pantallaFormulario)
+        }
 
     }
 }
