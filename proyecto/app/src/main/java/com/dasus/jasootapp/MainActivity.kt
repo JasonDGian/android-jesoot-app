@@ -3,6 +3,7 @@ package com.dasus.jasootapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,10 +39,21 @@ class MainActivity : AppCompatActivity() {
         botonPreguntas.setOnClickListener {
             startActivity(pantallaFormulario)
         }
-
-        botonJugar.setOnClickListener {
-            startActivity(Intent( this, JuegoActivity::class.java ))
+        CoroutineScope(Dispatchers.IO).launch {
+            val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
+            botonJugar.setOnClickListener {
+                if (listaPreguntas.size>=8){
+                    irAJugar()
+                }
+                else{
+                    Toast.makeText(this@MainActivity, "Necesitas tener al menos 8 preguntas", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
+    }
+
+    private fun irAJugar() {
+        startActivity(Intent(this, JuegoActivity::class.java))
     }
 }
