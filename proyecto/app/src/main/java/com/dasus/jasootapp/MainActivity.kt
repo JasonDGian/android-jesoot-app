@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.dasus.jasootapp.database.JesootDatabase
 import com.dasus.jasootapp.models.Pregunta
@@ -18,6 +19,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+    // Crea una instancia de la base de datos de carga tardía.
+    private lateinit var database: JesootDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,33 +31,30 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
 
-        // Crea una instancia de la base de datos.
-        val database =
-            Room.databaseBuilder(applicationContext, JesootDatabase::class.java, "jesoot_database")
-                .build()
-        val preguntaDao = database.preguntaDao()
+        }
+        // Instancia la base de datos con su contexto.
+        database = JesootDatabase.getDatabase(this)
 
         val botonJugar = findViewById<Button>(R.id.button2)
 
-        // Intent pantalla formulario
-        val pantallaFormulario = Intent(this, FormularioActivity::class.java)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
+        // Este bloque de codigo "OBSERVA" una variable cuyo valor
+        // depende de una llamada a la base de gatos. Al actualizarse
+        // la base de datos se actualiza a su vez el codigo que depende de ella.
+        database.preguntaDao().loadAllPreguntasLive().observe(this)
+        {
+            listado ->
             botonJugar.setOnClickListener {
-                if (listaPreguntas.size >= 8) {
+                if (listado.size > 7){
                     irAJugar()
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Necesitas tener al menos 8 preguntas",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                }
+                else {
+                    // Muestra el error de acceso a juego.
+                    muestraError()
                 }
             }
         }
+
 
         // -- Seccion menu contextual.
 
@@ -90,6 +92,10 @@ class MainActivity : AppCompatActivity() {
             // Muestra el menu en pantalla una vez configurado.
             menuEmergente.show()
         }
+    }
+
+    private fun muestraError() {
+        Toast.makeText(this,"Numero insuficiente de preguntas.", Toast.LENGTH_SHORT).show()
     }
 
     private fun irAListado() {

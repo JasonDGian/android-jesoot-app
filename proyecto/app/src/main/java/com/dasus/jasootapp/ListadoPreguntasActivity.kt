@@ -25,6 +25,7 @@ class ListadoPreguntasActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_listado_preguntas)
@@ -34,41 +35,45 @@ class ListadoPreguntasActivity : AppCompatActivity() {
             insets
         }
 
+        // Recupera la vista donde inyectar preguntas.
         val linearV = findViewById<LinearLayout>(R.id.lineaScrollPeguntas)
 
-        cargar( linearV )
+        // observa listado de preguntas en bbd y actualiza la vista.
+        preguntaDao.loadAllPreguntasLive().observe(this){
+           preguntas -> cargarLive( linearV, preguntas )
+        }
 
+        // Boton para retroceder.
         findViewById<Button>(R.id.bt_atras_listado).setOnClickListener { finish() }
+
     }
 
-    fun cargar( linear : LinearLayout ){
-        CoroutineScope(Dispatchers.IO).launch {
-            // Recuperar los registros como una lista
-            val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
+    fun cargarLive ( linear : LinearLayout, preguntas: List<Pregunta> ){
 
-            // Usar el listado en un contexto de procesador principal
-            // Si cambian cosas usando hilos secundarios la aplicacion crashea cosa rica.
-            withContext(Dispatchers.Main) {
-                listaPreguntas.forEach { pregunta ->
-                    // "Infla" la vista.
-                    val view: View = layoutInflater.inflate(R.layout.pregunta_listado, null)
+        linear.removeAllViews()
 
-                    // Configura el texto para pregunta y respuesta.
-                    view.findViewById<TextView>(R.id.preguntaTarjeta).text = pregunta.pregunta
-                    view.findViewById<TextView>(R.id.respuestaTarjeta).text = pregunta.correcta.toString()
+        preguntas.forEach{
+                pregunta ->
 
-                    // Configura la función para el boton (que borre la que debe)
-                    view.findViewById<Button>(R.id.botonBorrarPregunta).setOnClickListener {
-                        // Borra en otro hilo
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            // Borra de la base de datos.
-                            preguntaDao.deletePreguntaById(pregunta.id)
-                        }
+                // "Infla" la vista.
+                val view: View = layoutInflater.inflate(R.layout.pregunta_listado, null)
+
+                // Configura el texto para pregunta y respuesta.
+                view.findViewById<TextView>(R.id.preguntaTarjeta).text = pregunta.pregunta
+                view.findViewById<TextView>(R.id.respuestaTarjeta).text = pregunta.correcta.toString()
+
+                // Configura la función para el boton (que borre la que debe)
+                view.findViewById<Button>(R.id.botonBorrarPregunta).setOnClickListener {
+                    // Borra en otro hilo
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        // Borra de la base de datos.
+                        preguntaDao.deletePreguntaById(pregunta.id)
+
                     }
-                    // Add the inflated view to the LinearLayout
-                    linear.addView(view)
                 }
-            }
+                // Add the inflated view to the LinearLayout
+                linear.addView(view)
         }
     }
 }
+

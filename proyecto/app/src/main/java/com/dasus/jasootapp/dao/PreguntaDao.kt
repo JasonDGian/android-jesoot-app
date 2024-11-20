@@ -1,5 +1,6 @@
 package com.dasus.jasootapp.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
@@ -18,4 +19,9 @@ interface PreguntaDao {
 
     @Query(" SELECT * FROM pregunta ORDER BY id ")
     fun loadAllPreguntas(): List<Pregunta>
+
+    // Funcion que mediante una consulta SQL devuelve, demanera
+    // observada, una lista de preguntas.
+    @Query("SELECT * FROM pregunta")
+    fun loadAllPreguntasLive(): LiveData<List<Pregunta>>
 }
