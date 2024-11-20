@@ -34,15 +34,11 @@ class MainActivity : AppCompatActivity() {
                 .build()
         val preguntaDao = database.preguntaDao()
 
-        val botonPreguntas = findViewById<Button>(R.id.button)
         val botonJugar = findViewById<Button>(R.id.button2)
 
         // Intent pantalla formulario
         val pantallaFormulario = Intent(this, FormularioActivity::class.java)
 
-        botonPreguntas.setOnClickListener {
-            startActivity(pantallaFormulario)
-        }
         CoroutineScope(Dispatchers.IO).launch {
             val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
             botonJugar.setOnClickListener {
