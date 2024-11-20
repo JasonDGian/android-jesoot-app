@@ -2,7 +2,9 @@ package com.dasus.jasootapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +51,41 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Necesitas tener al menos 8 preguntas", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        // -- Seccion menu contextual.
+
+        // Identifica el boton para el menu contextual.
+        val botonContextual = findViewById<Button>(R.id.boton_menu)
+
+        // configura el comportamiento del boton del menu contextual.
+        botonContextual.setOnClickListener {
+            // vista que recibe.
+            view ->
+            // Identifica o genera el menu emergente.
+            val menuEmergente = PopupMenu(this, view)
+            // Busca la vista del menu contextual y lo mete en el menu emergente creado.
+            menuEmergente.menuInflater.inflate(R.menu.menu_cascada, menuEmergente.menu)
+
+            // aplica un comportamiento a las entradas del menu inflado.
+            menuEmergente.setOnMenuItemClickListener { menuItem: MenuItem ->
+                when (menuItem.itemId) {
+                    R.id.botonFormulario -> {
+                        // Action for Option 1
+                        startActivity( Intent(this, FormularioActivity::class.java) )
+                        true
+                    }
+                    R.id.botonListado -> {
+                        // Action for Option 1
+                        startActivity( Intent(this, ListadoPreguntasActivity::class.java) )
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            // Muestra el menu.
+            menuEmergente.show()
         }
 
 
