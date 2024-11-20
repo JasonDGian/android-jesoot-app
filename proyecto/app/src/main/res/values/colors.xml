@@ -12,4 +12,7 @@
     <color name="navy50">#802C508E</color>
     <color name="zero">#002C508E</color>
     <color name="green">#4CAF50</color>
+    <color name="white50">#B2FFFFFF</color>
+    <color name="red">#FF0000</color>
+
 </resources>

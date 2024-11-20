@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 class ListadoPreguntasActivity : AppCompatActivity() {
 
@@ -51,6 +52,7 @@ class ListadoPreguntasActivity : AppCompatActivity() {
     fun cargarLive ( linear : LinearLayout, preguntas: List<Pregunta> ){
 
         linear.removeAllViews()
+        findViewById<TextView>(R.id.contador_preguntas).text = ("Preg. almacenadas:  " + preguntas.size.toString())
 
         preguntas.forEach{
                 pregunta ->

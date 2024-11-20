@@ -4,8 +4,9 @@
             android:title="@string/boton_contextual_configuracion" />
         <item
             android:id="@+id/botonListado"
-            android:icon="@drawable/ic_listado"
-            android:iconTint="@color/navy"
-            android:iconTintMode="add"
             android:title="@string/boton_contextual_listad" />
+        <item
+            android:id="@+id/botonInfo"
+            android:title="@string/contextual_acerca_de"/>
+
 </menu>

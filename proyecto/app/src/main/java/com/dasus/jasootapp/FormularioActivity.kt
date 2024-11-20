@@ -1,11 +1,14 @@
 package com.dasus.jasootapp
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.dasus.jasootapp.models.Pregunta
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class FormularioActivity : AppCompatActivity() {
 

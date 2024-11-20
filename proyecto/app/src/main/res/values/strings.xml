@@ -115,4 +115,11 @@
     <string name="volver_al_menu">Volver al menu</string>
     <string name="jugar_de_nuevo">Jugar de nuevo</string>
     <string name="has_terminado_tu_partida">Has terminado tu partida</string>
+    <string name="contextual_acerca_de">Acerca de...</string>
+    <string name="acerca_de1"> "Jesoot" es una aplicación creada por los estudiantes Jesús Soto y David Jason como parte de su formación en el módulo de desarrollo de aplicaciones móviles.</string>
+    <string name="acerca_de2"> El objetivo principal del desarrollo de "Jesoot" fue el de poner a prueba nuestros conocimientos y perfeccionar nuestras habilidades como desarrolladores de aplicaciones en el mundo de los dispositivos moviles.</string>
+    <string name="acerca_de_jesoot">Acerca de Jesoot</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="neceistas_m_s_preguntas">¡Neceistas más preguntas!</string>
+
 </resources>

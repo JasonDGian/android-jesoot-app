@@ -1,22 +1,25 @@
 package com.dasus.jasootapp
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
+import android.view.animation.OvershootInterpolator
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
+import androidx.core.view.isVisible
 import com.dasus.jasootapp.database.JesootDatabase
-import com.dasus.jasootapp.models.Pregunta
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +41,27 @@ class MainActivity : AppCompatActivity() {
 
         val botonJugar = findViewById<Button>(R.id.button2)
 
+        val animator = ObjectAnimator.ofFloat(findViewById<ImageView>(R.id.fondo), "translationY", +50f, -50f)
+        animator.duration = 1000  // Duration for one oscillation (in milliseconds)
+        animator.repeatCount = ObjectAnimator.INFINITE  // Repeat infinitely
+        animator.repeatMode = ObjectAnimator.REVERSE  // Reverse the direction after each cycle
+        animator.interpolator = OvershootInterpolator(1.5f)  // Optional: Add a bounce effect
+
+        // Para dar comienzo a la animacion.
+        animator.start()
+
+        // Create the ObjectAnimator to rotate the ImageView 360 degrees
+        val rotateAnimator = ObjectAnimator.ofFloat(findViewById<ImageView>(R.id.logo), "rotation",  10f, 0f, -10f)
+
+        rotateAnimator.duration = 2000  // Duration of one full rotation (in milliseconds)
+        rotateAnimator.repeatCount = ObjectAnimator.INFINITE  // Repeat infinitely
+        rotateAnimator.repeatMode = ObjectAnimator.REVERSE  // Reverse the direction after each cycle
+
+
+        rotateAnimator.start()  // Start the rotation animation
+
+
+
         // Este bloque de codigo "OBSERVA" una variable cuyo valor
         // depende de una llamada a la base de gatos. Al actualizarse
         // la base de datos se actualiza a su vez el codigo que depende de ella.
@@ -51,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 else {
                     // Muestra el error de acceso a juego.
                     muestraError()
+                    muestraMensaje("¡Necesitas preguntas!")
                 }
             }
         }
@@ -84,6 +109,12 @@ class MainActivity : AppCompatActivity() {
                         irAListado()
                         true
                     }
+
+                    R.id.botonInfo ->{
+                        // muestra la informacion de la aplicacion.
+                        ifAInfo()
+                        true
+                    }
                     // Caso por defecto del when.
                     else -> false
                 }
@@ -92,6 +123,18 @@ class MainActivity : AppCompatActivity() {
             // Muestra el menu en pantalla una vez configurado.
             menuEmergente.show()
         }
+    }
+
+    private fun muestraMensaje(mensaje: String) {
+        findViewById<TextView>(R.id.tv_titulo2).isVisible=true
+        
+        Handler(Looper.getMainLooper()).postDelayed({
+            findViewById<TextView>(R.id.tv_titulo2).isVisible=false
+        }, 2000)
+    }
+
+    private fun ifAInfo() {
+        startActivity(Intent(this, AcercaDeActivity::class.java))
     }
 
     private fun muestraError() {
