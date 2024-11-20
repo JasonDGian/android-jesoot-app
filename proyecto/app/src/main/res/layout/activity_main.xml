@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navy2"
-        android:padding="10dp"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/tv_tituloApp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/nombre_largo"
@@ -45,7 +45,17 @@
             android:shadowDx="3"
             android:shadowDy="2"
             android:shadowRadius="5"
+            android:layout_gravity="start|center"
+            android:textSize="16dp"
             />
+
+        <Button
+            android:id="@+id/boton_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:layout_gravity="end|center"
+            android:backgroundTint="@color/navy"/>
     </FrameLayout>
 
     <ImageView

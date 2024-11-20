@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
     }
 
     private fun irAJugar() {
