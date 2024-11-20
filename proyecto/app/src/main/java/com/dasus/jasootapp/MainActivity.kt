@@ -29,14 +29,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Crea una instancia de la base de datos.
-        val database = Room.databaseBuilder( applicationContext, JesootDatabase::class.java, "jesoot_database").build()
+        val database =
+            Room.databaseBuilder(applicationContext, JesootDatabase::class.java, "jesoot_database")
+                .build()
         val preguntaDao = database.preguntaDao()
 
         val botonPreguntas = findViewById<Button>(R.id.button)
         val botonJugar = findViewById<Button>(R.id.button2)
 
         // Intent pantalla formulario
-        val pantallaFormulario = Intent( this, FormularioActivity::class.java )
+        val pantallaFormulario = Intent(this, FormularioActivity::class.java)
 
         botonPreguntas.setOnClickListener {
             startActivity(pantallaFormulario)
@@ -44,11 +46,14 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
             botonJugar.setOnClickListener {
-                if (listaPreguntas.size>=8){
+                if (listaPreguntas.size >= 8) {
                     irAJugar()
-                }
-                else{
-                    Toast.makeText(this@MainActivity, "Necesitas tener al menos 8 preguntas", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Necesitas tener al menos 8 preguntas",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -60,36 +65,43 @@ class MainActivity : AppCompatActivity() {
 
         // configura el comportamiento del boton del menu contextual.
         botonContextual.setOnClickListener {
-            // vista que recibe.
-            view ->
+                view -> // vista que recibe.
             // Identifica o genera el menu emergente.
             val menuEmergente = PopupMenu(this, view)
             // Busca la vista del menu contextual y lo mete en el menu emergente creado.
             menuEmergente.menuInflater.inflate(R.menu.menu_cascada, menuEmergente.menu)
 
-            // aplica un comportamiento a las entradas del menu inflado.
+            // Aplica un comportamiento a las entradas del menu inflado.
             menuEmergente.setOnMenuItemClickListener { menuItem: MenuItem ->
                 when (menuItem.itemId) {
+
                     R.id.botonFormulario -> {
-                        // Action for Option 1
-                        startActivity( Intent(this, FormularioActivity::class.java) )
+                        // Abre actividad Configuracion.
+                        ifAConfiguracion()
                         true
                     }
+
                     R.id.botonListado -> {
-                        // Action for Option 1
-                        startActivity( Intent(this, ListadoPreguntasActivity::class.java) )
+                        // Abre actividad Listado Preguntas.
+                        irAListado()
                         true
                     }
+                    // Caso por defecto del when.
                     else -> false
                 }
             }
 
-            // Muestra el menu.
+            // Muestra el menu en pantalla una vez configurado.
             menuEmergente.show()
         }
+    }
 
+    private fun irAListado() {
+        startActivity(Intent(this, ListadoPreguntasActivity::class.java))
+    }
 
-
+    private fun ifAConfiguracion() {
+        startActivity(Intent(this, FormularioActivity::class.java))
     }
 
     private fun irAJugar() {

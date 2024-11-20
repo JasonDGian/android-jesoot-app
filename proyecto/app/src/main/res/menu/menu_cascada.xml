@@ -1,8 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
             android:id="@+id/botonFormulario"
-            android:title="Confiuracion preguntas." />
+            android:title="@string/boton_contextual_configuracion" />
         <item
             android:id="@+id/botonListado"
-            android:title="Listado preguntas" />
+            android:icon="@drawable/ic_listado"
+            android:iconTint="@color/navy"
+            android:iconTintMode="add"
+            android:title="@string/boton_contextual_listad" />
 </menu>

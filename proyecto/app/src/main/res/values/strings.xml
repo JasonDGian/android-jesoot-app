@@ -109,4 +109,6 @@
     <string name="tarjeta_pregunta">PREGUNTA:</string>
     <string name="tarjeta_respuesta_correcta">RESPUESTA CORRECTA:</string>
     <string name="tarjeta_bt_borrar_pregunta">Borrar pregunta.</string>
+    <string name="boton_contextual_listad">Listado preguntas.</string>
+    <string name="boton_contextual_configuracion">Configuración preguntas.</string>
 </resources>
