@@ -111,4 +111,8 @@
     <string name="tarjeta_bt_borrar_pregunta">Borrar pregunta.</string>
     <string name="boton_contextual_listad">Listado preguntas.</string>
     <string name="boton_contextual_configuracion">Configuración preguntas.</string>
+    <string name="felicidades">Felicidades</string>
+    <string name="volver_al_menu">Volver al menu</string>
+    <string name="jugar_de_nuevo">Jugar de nuevo</string>
+    <string name="has_terminado_tu_partida">Has terminado tu partida</string>
 </resources>

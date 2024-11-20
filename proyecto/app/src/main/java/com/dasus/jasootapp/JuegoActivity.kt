@@ -59,7 +59,6 @@ class JuegoActivity : AppCompatActivity() {
         val resp4 = findViewById<Button>(R.id.btn_respuesta4)
         val confirmar = findViewById<Button>(R.id.btn_confirmar)
 
-        Log.d( TAG, "Antes de corutina." )
         CoroutineScope(Dispatchers.IO).launch {
             val listaPreguntas: List<Pregunta> = preguntaDao.loadAllPreguntas()
             Log.d(TAG, listaPreguntas.toString())
@@ -67,21 +66,13 @@ class JuegoActivity : AppCompatActivity() {
             var cont = 0
             var respuestaSeleccionada = 0
             var puntos = 0
-            Log.d( TAG, "Antes de while dentro de corutina." )
             var numeroPregunta=cont+1
             titulo.text=("Pregunta $numeroPregunta/5")
-            Log.d( TAG, "Despues de pregunta numero X" )
             pregunta.text=(listaPreguntas[cont].pregunta)
-            Log.d( TAG, "Despues de asignar pregunta" )
             resp1.text=(listaPreguntas[cont].respuesta1)
-            Log.d( TAG, "Despues de asignar resp1" )
             resp2.text=(listaPreguntas[cont].respuesta2)
-            Log.d( TAG, "Despues de asignar resp2" )
             resp3.text=(listaPreguntas[cont].respuesta3)
-            Log.d( TAG, "Despues de asignar resp3" )
             resp4.text=(listaPreguntas[cont].respuesta4)
-            Log.d( TAG, "Despues de asignar resp4" )
-            Log.d( TAG, "Despues de inicialiar variables de corutina." )
 
             resp1.setOnClickListener {
                 respuestaSeleccionada = 1
@@ -121,18 +112,11 @@ class JuegoActivity : AppCompatActivity() {
                 cont++
                 var numeroPregunta = cont + 1
                 titulo.text = ("Pregunta $numeroPregunta/5")
-                Log.d(TAG, "Despues de pregunta numero X")
                 pregunta.text = (listaPreguntas[cont].pregunta)
-                Log.d(TAG, "Despues de asignar pregunta")
                 resp1.text = (listaPreguntas[cont].respuesta1)
-                Log.d(TAG, "Despues de asignar resp1")
                 resp2.text = (listaPreguntas[cont].respuesta2)
-                Log.d(TAG, "Despues de asignar resp2")
                 resp3.text = (listaPreguntas[cont].respuesta3)
-                Log.d(TAG, "Despues de asignar resp3")
                 resp4.text = (listaPreguntas[cont].respuesta4)
-                Log.d(TAG, "Despues de asignar resp4")
-                Log.d(TAG, "Despues de inicialiar variables de corutina.")
 
                 respuestaSeleccionada = 0
                 resp1.setBackgroundColor(
@@ -160,9 +144,8 @@ class JuegoActivity : AppCompatActivity() {
                     )
                 )
                 if (cont == 5) {
-                    Log.d(TAG, "Despues de while dentro de corutina.")
                     terminadoModel.setTerminadoValue(true)
-                    irPuntos()
+                    irPuntos(puntos)
                 }
             }
                 else{
@@ -178,8 +161,10 @@ class JuegoActivity : AppCompatActivity() {
 
         }
 
-    private fun irPuntos() {
-        startActivity(Intent(this, FormularioActivity::class.java))
+    private fun irPuntos(puntos: Int) {
+        val intent = Intent(this, PuntuacionActivity::class.java)
+        intent.putExtra("Puntuacion", puntos.toString())
+        startActivity(intent)
     }
 
 }
